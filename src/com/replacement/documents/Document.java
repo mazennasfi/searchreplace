@@ -1,9 +1,6 @@
 package com.replacement.documents;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Scanner;
 
 public abstract class Document {
 
@@ -23,33 +20,19 @@ public abstract class Document {
 	public Document(String filePath) {
 		super();
 		this.filePath = filePath;
-		File file = new File(filePath);
-		String content = "";
-		BufferedReader reader = null;
-
-		try {
-			// Enter data using BufferReader
-			reader = new BufferedReader(new FileReader(file));
-
-			// Reading data using readLine
-			String line = reader.readLine();
-
-			while (line != null) {
-				content = content + line + System.lineSeparator();
-				line = reader.readLine();
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-
-			try { // Closing the resources
-				reader.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		this.content = content;
-		this.length = content.length();
+	}
+	
+	public static String read() {
+		//Read the file path from standard input
+		Scanner scanner = new Scanner(System.in);
+		String filePath = scanner.next();
+		scanner.close();
+		return filePath;
+	}
+	
+	public void write() {
+		//Write to standard output
+		System.out.println(content);
 	}
 
 	public String getType() {

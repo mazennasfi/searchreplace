@@ -1,5 +1,10 @@
 package com.replacement.documents;
 
+import java.io.BufferedReader;	
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+
 public class TextDocument extends Document {
 
 	public TextDocument() {
@@ -10,6 +15,34 @@ public class TextDocument extends Document {
 	public TextDocument(String filePath) {
 		super(filePath);
 		this.setType("txt");
+		File file = new File(filePath);
+		String content = "";
+		BufferedReader reader = null;
+
+		try {
+			// Enter data using BufferReader
+			reader = new BufferedReader(new FileReader(file));
+
+			// Reading data using readLine
+			String line = reader.readLine();
+
+			while (line != null) {
+				content = content + line + System.lineSeparator();
+				line = reader.readLine();
+			}
+			this.setContent(content);
+			this.setLength(content.length());
+			
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+
+			try { //Close the resources
+				reader.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}		
 	}
 
 	@Override
@@ -22,19 +55,12 @@ public class TextDocument extends Document {
 		if (this.search(oldString)) {
 			String oldContent = this.getContent();
 
-			// Replacing oldString with newString in the newContent
+			//Replace oldString with newString in the newContent
 			String newContent = oldContent.replaceAll(oldString, newString);
 			
 			//Update class attributes 
 			this.setContent(newContent);
 			this.setLength(newContent.length());
-
-			// Write to standard output
-			System.out.println(newContent);
-
-		} else {
-			// Write to standard output
-			System.out.println(this.getContent());
 		}
 	}
 }
