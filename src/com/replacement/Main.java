@@ -6,26 +6,31 @@ import com.replacement.documents.XMLDocument;
 
 public class Main {
 
-	public static void main(String[] args){
-		
+	public static void main(String[] args) {
+
 		String fileDataType = args[0];
 		String oldString = args[1];
 		String newString = args[2];
 
-		//Read the file path from standard input
-		String filePath = Document.read();
+		// Read the file path from standard input
+		String content = Document.read();
 
 		switch (fileDataType) {
 		case "txt":
-			TextDocument textDocument = new TextDocument(filePath);
+
+			TextDocument textDocument = new TextDocument(content);
 			textDocument.replace(oldString, newString);
-			//Write to standard output
+
+			// Write to standard output
 			textDocument.write();
 			break;
+
 		case "xml":
-			XMLDocument xmlDocument = new XMLDocument(filePath);
+
+			XMLDocument xmlDocument = new XMLDocument(content);
 			xmlDocument.replace(oldString, newString);
-			//Write to standard output
+
+			// Write to standard output
 			xmlDocument.write();
 			break;
 		default:

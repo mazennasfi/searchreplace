@@ -1,11 +1,10 @@
 package com.replacement.documents;
 
+import java.io.BufferedInputStream;
 import java.util.Scanner;
 
 public abstract class Document {
 
-	private String type;
-	private String filePath;
 	private String content;
 	private int length;
 
@@ -17,38 +16,27 @@ public abstract class Document {
 		super();
 	}
 
-	public Document(String filePath) {
+	public Document(String content) {
 		super();
-		this.filePath = filePath;
+		this.content = content;
+		this.length = content.length();
 	}
-	
+
 	public static String read() {
-		//Read the file path from standard input
-		Scanner scanner = new Scanner(System.in);
-		String filePath = scanner.next();
-		scanner.close();
-		return filePath;
+
+		// Read the file path from standard input
+		String content = "";
+		Scanner stdin = new Scanner(new BufferedInputStream(System.in));
+		while (stdin.hasNext()) {
+			content += stdin.nextLine() + System.lineSeparator();
+		}
+		stdin.close();
+		return content;
 	}
-	
+
 	public void write() {
-		//Write to standard output
+		// Write to standard output
 		System.out.println(content);
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
 	}
 
 	public String getContent() {
