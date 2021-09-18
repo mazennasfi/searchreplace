@@ -24,7 +24,7 @@ public abstract class Document {
 
 	public static String read() {
 
-		// Read the file path from standard input
+		// Read the file content from standard input
 		String content = "";
 		Scanner stdin = new Scanner(new BufferedInputStream(System.in));
 		while (stdin.hasNext()) {

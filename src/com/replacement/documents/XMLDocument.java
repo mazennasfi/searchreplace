@@ -98,9 +98,6 @@ public class XMLDocument extends Document {
 		try {
 			// Transformer performs a copy from source to a result
 			Transformer xformer = TransformerFactory.newInstance().newTransformer();
-
-			// Remove the automatically generated standalone="no" attribute
-			document.setXmlStandalone(true);
 			xformer.transform(new DOMSource(document), new StreamResult(sw));
 		
 		} catch (Exception e) {

@@ -1,40 +1,30 @@
 package com.replacement;
 
 import com.replacement.documents.Document;
-import com.replacement.documents.TextDocument;
-import com.replacement.documents.XMLDocument;
+import com.replacement.documents.DocumentFactory;
 
 public class Main {
 
 	public static void main(String[] args) {
+		
+		// Create Document factory
+		DocumentFactory documentFactory = new DocumentFactory();
 
+		// Read the file content from standard input
+		String content = Document.read();
+
+		// Program's parameters
 		String fileDataType = args[0];
 		String oldString = args[1];
 		String newString = args[2];
 
-		// Read the file path from standard input
-		String content = Document.read();
+		// Generate object of concrete document classes based on fileDataType
+		Document document = documentFactory.getDocument(fileDataType, content);
 
-		switch (fileDataType) {
-		case "txt":
+		// Replace the old string with the new string
+		document.replace(oldString, newString);
 
-			TextDocument textDocument = new TextDocument(content);
-			textDocument.replace(oldString, newString);
-
-			// Write to standard output
-			textDocument.write();
-			break;
-
-		case "xml":
-
-			XMLDocument xmlDocument = new XMLDocument(content);
-			xmlDocument.replace(oldString, newString);
-
-			// Write to standard output
-			xmlDocument.write();
-			break;
-		default:
-			System.out.println("specify another data type : try txt or xml");
-		}
+		// Write to standard output
+		document.write();
 	}
 }
