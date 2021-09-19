@@ -1,9 +1,9 @@
-# About
+## About
 
 This Java program can search and replace a specific text phrase in a text file,
 and search and replace a specific text phrase in the attribute values of an XML file.
 
-# Usage
+## Usage
 
 The program accepts 3 command line parameters :
 
@@ -13,12 +13,14 @@ The program accepts 3 command line parameters :
 
 The program can read from standard input and write to standard output.
 
-# UML class diagram of the program:
+## UML class diagram of the program:
 
 ![UML class diagram](diagrams/DocumentFactoryMethod.png)
 
 Following the Factory Method design pattern, the Main class asks the Document to create a text or xml document,
 based on fileDataType entered by the user.
 The TextDocument and XMLDocument extends from Document abstract class.
+
+## Testing
 
 I used JUnit 5 as unit testing framework.
