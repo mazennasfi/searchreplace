@@ -25,7 +25,6 @@ public class TextDocument extends Document {
 
 			// Update class attributes
 			this.setContent(newContent);
-			this.setLength(newContent.length());
 		}
 	}
 }

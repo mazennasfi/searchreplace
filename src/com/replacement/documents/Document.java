@@ -6,8 +6,7 @@ import java.util.Scanner;
 public abstract class Document {
 
 	private String content;
-	private int length;
-
+	
 	public abstract boolean search(String oldString);
 
 	public abstract void replace(String oldString, String newString);
@@ -19,7 +18,6 @@ public abstract class Document {
 	public Document(String content) {
 		super();
 		this.content = content;
-		this.length = content.length();
 	}
 
 	public static String read() {
@@ -45,13 +43,5 @@ public abstract class Document {
 
 	public void setContent(String content) {
 		this.content = content;
-	}
-
-	public int getLength() {
-		return length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
 	}
 }

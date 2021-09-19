@@ -78,7 +78,6 @@ public class XMLDocument extends Document {
 				}
 			}
 			this.setContent(this.toString());
-			this.setLength(this.toString().length());
 		}
 
 	}
